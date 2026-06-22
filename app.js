@@ -16,7 +16,8 @@ const defaultNote = personalNote.textContent.trim();
 const noteStorageKey = "kenny-portfolio-personal-note";
 const widgetPositionKey = "kenny-portfolio-widget-positions";
 const desktopQuery = window.matchMedia("(min-width: 981px)");
-const interactiveSelector = "button, input, textarea, select, [contenteditable='true'], .project-chip, .note-link";
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const interactiveSelector = "button, input, textarea, select, [contenteditable='true'], .project-chip";
 
 function activatePanel(panelName) {
   menuItems.forEach((item) => {
@@ -96,6 +97,27 @@ function saveWidgetPositions() {
   window.localStorage.setItem(widgetPositionKey, JSON.stringify(positions));
 }
 
+function getWidgetPosition(widget) {
+  return {
+    left: parseFloat(widget.style.left || widget.offsetLeft),
+    top: parseFloat(widget.style.top || widget.offsetTop),
+  };
+}
+
+function placeWidget(widget, left, top) {
+  widget.style.left = `${left}px`;
+  widget.style.top = `${top}px`;
+}
+
+function settleWidget(widget, left, top, duration = 360) {
+  widget.classList.add("is-settling");
+  placeWidget(widget, left, top);
+
+  window.setTimeout(() => {
+    widget.classList.remove("is-settling");
+  }, duration);
+}
+
 function restoreWidgetPositions() {
   if (!desktopQuery.matches) {
     return;
@@ -109,8 +131,7 @@ function restoreWidgetPositions() {
     }
 
     const next = clampToCluster(saved.left, saved.top, widget);
-    widget.style.left = `${next.left}px`;
-    widget.style.top = `${next.top}px`;
+    placeWidget(widget, next.left, next.top);
   });
 }
 
@@ -153,6 +174,63 @@ function clampToCluster(left, top, widget) {
   };
 }
 
+function getWidgetBox(widget) {
+  const { left, top } = getWidgetPosition(widget);
+
+  return {
+    left,
+    top,
+    right: left + widget.offsetWidth,
+    bottom: top + widget.offsetHeight,
+    centerX: left + widget.offsetWidth / 2,
+    centerY: top + widget.offsetHeight / 2,
+    width: widget.offsetWidth,
+    height: widget.offsetHeight,
+  };
+}
+
+function pushCollidingWidgets(activeWidget) {
+  const activeBox = getWidgetBox(activeWidget);
+  const padding = 18;
+
+  draggableWidgets.forEach((widget) => {
+    if (widget === activeWidget || widget.dataset.widgetId === "greeting") {
+      return;
+    }
+
+    const box = getWidgetBox(widget);
+    const overlapX = Math.min(activeBox.right, box.right) - Math.max(activeBox.left, box.left);
+    const overlapY = Math.min(activeBox.bottom, box.bottom) - Math.max(activeBox.top, box.top);
+
+    if (overlapX <= -padding || overlapY <= -padding) {
+      return;
+    }
+
+    const directionX = box.centerX === activeBox.centerX ? 1 : Math.sign(box.centerX - activeBox.centerX);
+    const directionY = box.centerY === activeBox.centerY ? 1 : Math.sign(box.centerY - activeBox.centerY);
+    const pushX = Math.max(0, overlapX + padding) * directionX * 0.42;
+    const pushY = Math.max(0, overlapY + padding) * directionY * 0.42;
+    const current = getWidgetPosition(widget);
+    const next = clampToCluster(current.left + pushX, current.top + pushY, widget);
+
+    settleWidget(widget, next.left, next.top, 180);
+  });
+}
+
+function settleCluster(activeWidget) {
+  draggableWidgets.forEach((widget) => {
+    const current = getWidgetPosition(widget);
+    const next = clampToCluster(current.left, current.top, widget);
+
+    if (widget === activeWidget) {
+      settleWidget(widget, next.left, next.top);
+      return;
+    }
+
+    settleWidget(widget, next.left, next.top, 300);
+  });
+}
+
 function shouldStartDrag(event, widget) {
   if (!desktopQuery.matches || event.button !== 0) {
     return false;
@@ -188,6 +266,7 @@ function setupDraggableWidgets() {
 
       widget.classList.remove("is-settling");
       widget.classList.add("is-dragging");
+      clusterWrap.classList.add("is-rearranging");
       widget.setPointerCapture(event.pointerId);
       activeDrag.scale = scale;
     });
@@ -214,8 +293,8 @@ function setupDraggableWidgets() {
       activeDrag.widget.dataset.suppressClick = "true";
     }
 
-    activeDrag.widget.style.left = `${activeDrag.left + deltaX}px`;
-    activeDrag.widget.style.top = `${activeDrag.top + deltaY}px`;
+    placeWidget(activeDrag.widget, activeDrag.left + deltaX, activeDrag.top + deltaY);
+    pushCollidingWidgets(activeDrag.widget);
   });
 
   function finishDrag(event) {
@@ -224,22 +303,59 @@ function setupDraggableWidgets() {
     }
 
     const { widget } = activeDrag;
-    const settled = clampToCluster(parseFloat(widget.style.left), parseFloat(widget.style.top), widget);
+    const current = getWidgetPosition(widget);
+    const settled = clampToCluster(current.left, current.top, widget);
     widget.classList.remove("is-dragging");
-    widget.classList.add("is-settling");
-    widget.style.left = `${settled.left}px`;
-    widget.style.top = `${settled.top}px`;
-
-    window.setTimeout(() => {
-      widget.classList.remove("is-settling");
-    }, 430);
-
+    settleWidget(widget, settled.left, settled.top);
+    settleCluster(widget);
+    clusterWrap.classList.remove("is-rearranging");
     saveWidgetPositions();
     activeDrag = null;
   }
 
   window.addEventListener("pointerup", finishDrag);
   window.addEventListener("pointercancel", finishDrag);
+}
+
+function startOrbitalMotion() {
+  if (!desktopQuery.matches || motionQuery.matches) {
+    return;
+  }
+
+  const greeting = document.querySelector('[data-widget-id="greeting"]');
+  const orbitingWidgets = [...draggableWidgets].filter((widget) => widget !== greeting);
+  const seeds = new Map(
+    orbitingWidgets.map((widget, index) => [
+      widget,
+      {
+        speed: 0.00022 + (index % 4) * 0.000035,
+        phase: index * 1.2,
+        radiusX: 4 + (index % 3) * 1.4,
+        radiusY: 3 + (index % 4) * 1.1,
+      },
+    ]),
+  );
+
+  function orbit(timestamp) {
+    const isRearranging = clusterWrap.classList.contains("is-rearranging");
+
+    orbitingWidgets.forEach((widget) => {
+      if (isRearranging || widget.classList.contains("is-dragging") || widget.classList.contains("is-settling")) {
+        widget.style.setProperty("--orbit-x", "0px");
+        widget.style.setProperty("--orbit-y", "0px");
+        return;
+      }
+
+      const seed = seeds.get(widget);
+      const angle = timestamp * seed.speed + seed.phase;
+      widget.style.setProperty("--orbit-x", `${Math.cos(angle) * seed.radiusX}px`);
+      widget.style.setProperty("--orbit-y", `${Math.sin(angle) * seed.radiusY}px`);
+    });
+
+    window.requestAnimationFrame(orbit);
+  }
+
+  window.requestAnimationFrame(orbit);
 }
 
 menuItems.forEach((item) => {
@@ -264,5 +380,6 @@ resolveComplianceLinks();
 restorePersonalNote();
 restoreWidgetPositions();
 setupDraggableWidgets();
+startOrbitalMotion();
 updateDateTime();
 window.setInterval(updateDateTime, 30_000);
