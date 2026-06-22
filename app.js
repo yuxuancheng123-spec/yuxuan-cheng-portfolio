@@ -32,7 +32,7 @@ menuItems.forEach((item) => {
 
 stackToggle.addEventListener("click", () => {
   const isScattered = projectStack.classList.toggle("is-scattered");
-  stackToggle.textContent = isScattered ? "Collect projects" : "Scatter projects";
+  stackToggle.textContent = isScattered ? "Hide links" : "Show links";
   stackToggle.setAttribute("aria-expanded", String(isScattered));
 });
 

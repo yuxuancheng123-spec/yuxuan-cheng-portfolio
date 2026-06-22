@@ -339,9 +339,9 @@ h1 {
 
 .panel-card {
   left: 84px;
-  top: 582px;
-  width: 260px;
-  height: 132px;
+  top: 574px;
+  width: 292px;
+  height: 146px;
   padding: 20px;
 }
 
@@ -375,10 +375,10 @@ h1 {
 }
 
 .portfolio-card {
-  left: 384px;
-  top: 582px;
-  width: 230px;
-  height: 132px;
+  left: 410px;
+  top: 520px;
+  width: 246px;
+  height: 214px;
   padding: 20px;
 }
 
@@ -397,56 +397,56 @@ h1 {
 }
 
 .project-stack {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  display: grid;
+  gap: 7px;
+  max-height: 0;
+  margin-top: 8px;
+  overflow: hidden;
+  opacity: 0;
   pointer-events: none;
+  transition: max-height 260ms ease, opacity 220ms ease;
 }
 
 .project-chip {
-  position: absolute;
-  left: 20px;
-  top: 76px;
+  position: relative;
   display: flex;
   align-items: center;
-  width: 166px;
-  min-height: 48px;
-  padding: 10px 13px;
+  width: 100%;
+  min-height: 26px;
+  padding: 6px 10px;
   border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: 17px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.88);
   color: var(--ink);
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 780;
-  box-shadow: 0 16px 36px rgba(70, 86, 96, 0.12);
-  opacity: 0;
+  box-shadow: 0 10px 24px rgba(70, 86, 96, 0.1);
+  opacity: 1;
   transform: translate3d(0, 0, 0) rotate(0);
-  transition: opacity 260ms ease, transform 360ms cubic-bezier(.2,.8,.2,1);
+  transition: background 220ms ease, transform 220ms ease;
   pointer-events: none;
 }
 
 .project-stack.is-scattered {
-  pointer-events: auto;
-}
-
-.project-stack.is-scattered .project-chip {
+  max-height: 102px;
   opacity: 1;
   pointer-events: auto;
 }
 
-.project-stack.is-scattered .chip-one {
-  transform: translate3d(-74px, -94px, 0) rotate(-10deg);
+.project-stack.is-scattered .project-chip {
+  pointer-events: auto;
 }
 
-.project-stack.is-scattered .chip-two {
-  transform: translate3d(70px, -86px, 0) rotate(9deg);
-}
-
-.project-stack.is-scattered .chip-three {
-  transform: translate3d(28px, -24px, 0) rotate(-2deg);
+.project-stack.is-scattered .project-chip:hover,
+.project-stack.is-scattered .project-chip:focus-visible {
+  background: #fff;
+  transform: translateX(3px);
+  outline: none;
 }
 
 .music-card {
-  left: 660px;
+  left: 700px;
   top: 596px;
   display: flex;
   align-items: center;
@@ -468,7 +468,7 @@ h1 {
 }
 
 .heart-card {
-  left: 660px;
+  left: 700px;
   top: 684px;
   display: grid;
   width: 78px;
