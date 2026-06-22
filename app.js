@@ -4,6 +4,12 @@ const stackToggle = document.querySelector(".stack-toggle");
 const projectStack = document.querySelector(".project-stack");
 const clock = document.querySelector("#clock");
 const dateLabel = document.querySelector("#date-label");
+const personalNote = document.querySelector("#personal-note");
+const noteSave = document.querySelector(".note-save");
+const complianceLinks = document.querySelectorAll("[data-compliance-link]");
+
+const defaultNote = personalNote.textContent.trim();
+const noteStorageKey = "kenny-portfolio-personal-note";
 
 function activatePanel(panelName) {
   menuItems.forEach((item) => {
@@ -26,6 +32,31 @@ function updateDateTime() {
   dateLabel.textContent = `${now.getFullYear()} / ${month} / ${day}`;
 }
 
+function resolveComplianceLinks() {
+  if (window.location.protocol !== "file:") return;
+
+  complianceLinks.forEach((link) => {
+    link.href = "http://127.0.0.1:8010/ai-generated-actor-compliance/web/index.html";
+  });
+}
+
+function restorePersonalNote() {
+  const savedNote = window.localStorage.getItem(noteStorageKey);
+  personalNote.textContent = savedNote || defaultNote;
+}
+
+function savePersonalNote() {
+  const note = personalNote.textContent.replace(/\s+/g, " ").trim();
+  personalNote.textContent = note || defaultNote;
+  window.localStorage.setItem(noteStorageKey, personalNote.textContent);
+  noteSave.textContent = "Saved";
+  noteSave.classList.add("is-saved");
+  window.setTimeout(() => {
+    noteSave.textContent = "Save";
+    noteSave.classList.remove("is-saved");
+  }, 1200);
+}
+
 menuItems.forEach((item) => {
   item.addEventListener("click", () => activatePanel(item.dataset.panel));
 });
@@ -36,5 +67,15 @@ stackToggle.addEventListener("click", () => {
   stackToggle.setAttribute("aria-expanded", String(isScattered));
 });
 
+noteSave.addEventListener("click", savePersonalNote);
+personalNote.addEventListener("keydown", (event) => {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") {
+    event.preventDefault();
+    savePersonalNote();
+  }
+});
+
+resolveComplianceLinks();
+restorePersonalNote();
 updateDateTime();
 window.setInterval(updateDateTime, 30_000);

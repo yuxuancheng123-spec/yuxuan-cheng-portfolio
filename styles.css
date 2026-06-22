@@ -234,7 +234,8 @@ button {
   position: absolute;
   left: 24px;
   right: 24px;
-  bottom: 20px;
+  bottom: 42px;
+  margin: 0;
   padding: 9px 12px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.76);
@@ -245,6 +246,47 @@ button {
   text-align: center;
   box-shadow: 0 12px 30px rgba(70, 86, 96, 0.1);
   backdrop-filter: blur(14px);
+}
+
+.visual-copy:focus {
+  background: rgba(255, 255, 255, 0.92);
+  outline: 2px solid rgba(72, 199, 184, 0.35);
+}
+
+.visual-actions {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.note-save,
+.note-link {
+  min-height: 24px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--aqua-deep);
+  font-size: 11px;
+  font-weight: 840;
+  box-shadow: 0 8px 20px rgba(70, 86, 96, 0.09);
+}
+
+.note-save:hover,
+.note-save:focus-visible,
+.note-link:hover,
+.note-link:focus-visible {
+  background: #fff;
+  outline: none;
+}
+
+.note-save.is-saved {
+  color: #fff;
+  background: rgba(72, 199, 184, 0.94);
 }
 
 .research-pill {

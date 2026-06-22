@@ -47,12 +47,18 @@
             </nav>
           </aside>
 
-          <a class="float-card visual-card" href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer" aria-label="Open AI Actor Compliance Workspace">
+          <section class="float-card visual-card" aria-label="Editable personal note">
             <img src="./assets/ai-identity-visual.png" alt="Abstract AI identity and digital asset research visual" />
-            <span class="visual-copy">
+            <p class="visual-copy" id="personal-note" contenteditable="true" spellcheck="true">
               CS:GO, Apex Legends, VALORANT. Congrats NiKo on the Major. Don't give up on your life; keep chasing your dream.
-            </span>
-          </a>
+            </p>
+            <div class="visual-actions" aria-label="Personal note actions">
+              <button class="note-save" type="button">Save</button>
+              <a class="note-link" data-compliance-link href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
+                Open compliance
+              </a>
+            </div>
+          </section>
 
           <a class="float-card research-pill" href="./assets/Kenny_Cheng_Resume.pdf" target="_blank" rel="noreferrer">
             Resume
@@ -82,7 +88,7 @@
               <p class="card-title">Recent work</p>
               <p>Navigating Diversity</p>
               <small>Revise &amp; Resubmit, Career Development International.</small>
-              <a class="panel-link" href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
+              <a class="panel-link" data-compliance-link href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
                 AI Actor Compliance
               </a>
             </div>
@@ -90,7 +96,7 @@
               <p class="card-title">Projects</p>
               <p>AI Actor Compliance Workspace</p>
               <small>Consent, labeling, provenance, and platform controls.</small>
-              <a class="panel-link" href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
+              <a class="panel-link" data-compliance-link href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
                 Open workspace
               </a>
             </div>
@@ -117,7 +123,7 @@
               Show links
             </button>
             <div class="project-stack" aria-label="Portfolio project shortcuts">
-              <a class="project-chip chip-one" href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
+              <a class="project-chip chip-one" data-compliance-link href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
                 AI Actor Compliance
               </a>
               <a class="project-chip chip-two" href="https://github.com/yuxuancheng123-spec">
@@ -129,7 +135,7 @@
             </div>
           </section>
 
-          <a class="float-card music-card" href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
+          <a class="float-card music-card" data-compliance-link href="../ai-generated-actor-compliance/web/index.html" target="_blank" rel="noreferrer">
             <span>AI governance</span>
             <span class="play-dot" aria-hidden="true"></span>
           </a>
