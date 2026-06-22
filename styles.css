@@ -339,25 +339,19 @@ h1 {
 
 .panel-card {
   left: 84px;
-  top: 574px;
-  width: 292px;
-  height: 146px;
+  top: 566px;
+  width: 306px;
+  height: 170px;
   padding: 20px;
 }
 
 .panel-content {
-  position: absolute;
-  inset: 20px;
-  opacity: 0;
-  transform: translateY(14px);
-  pointer-events: none;
-  transition: opacity 260ms ease, transform 260ms ease;
+  display: none;
+  animation: panelIn 220ms ease both;
 }
 
 .panel-content.is-active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  display: block;
 }
 
 .panel-content p,
@@ -372,6 +366,37 @@ h1 {
   display: block;
   color: var(--muted);
   font-size: 13px;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  margin-top: 10px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(72, 199, 184, 0.13);
+  color: var(--aqua-deep);
+  font-size: 12px;
+  font-weight: 840;
+}
+
+.panel-link:hover,
+.panel-link:focus-visible {
+  background: rgba(72, 199, 184, 0.2);
+  outline: none;
 }
 
 .portfolio-card {
@@ -536,7 +561,7 @@ h1 {
   }
 
   .panel-content {
-    inset: 20px;
+    display: none;
   }
 
   .project-stack {
