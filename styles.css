@@ -126,6 +126,10 @@ button {
   touch-action: none;
 }
 
+[data-widget-id="greeting"] {
+  cursor: default;
+}
+
 [data-draggable-widget].is-dragging {
   z-index: 50;
   --orbit-x: 0px;
@@ -432,7 +436,7 @@ h1 {
 
 .panel-card {
   left: 84px;
-  top: 566px;
+  top: 590px;
   width: 306px;
   height: 170px;
   padding: 20px;

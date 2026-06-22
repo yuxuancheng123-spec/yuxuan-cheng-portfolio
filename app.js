@@ -14,10 +14,21 @@ const onlineComplianceUrl = "https://yuxuancheng123-spec.github.io/ai-generated-
 const localComplianceUrl = "http://127.0.0.1:8010/ai-generated-actor-compliance/web/index.html";
 const defaultNote = personalNote.textContent.trim();
 const noteStorageKey = "kenny-portfolio-personal-note";
-const widgetPositionKey = "kenny-portfolio-widget-positions";
 const desktopQuery = window.matchMedia("(min-width: 981px)");
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const interactiveSelector = "button, input, textarea, select, [contenteditable='true'], .project-chip";
+const orbitSlots = {
+  sidebar: { left: 0, top: 126 },
+  visual: { left: 292, top: 0 },
+  "resume-pill": { left: 725, top: 96 },
+  clock: { left: 725, top: 180 },
+  greeting: { left: 330, top: 196 },
+  calendar: { left: 725, top: 342 },
+  panel: { left: 84, top: 590 },
+  portfolio: { left: 410, top: 520 },
+  "governance-link": { left: 700, top: 596 },
+  "contact-heart": { left: 700, top: 684 },
+};
 
 function activatePanel(panelName) {
   menuItems.forEach((item) => {
@@ -73,30 +84,6 @@ function getScale() {
   return rect.width / clusterWrap.offsetWidth || 1;
 }
 
-function getStoredWidgetPositions() {
-  try {
-    return JSON.parse(window.localStorage.getItem(widgetPositionKey)) || {};
-  } catch {
-    return {};
-  }
-}
-
-function saveWidgetPositions() {
-  if (!desktopQuery.matches) {
-    return;
-  }
-
-  const positions = {};
-  draggableWidgets.forEach((widget) => {
-    positions[widget.dataset.widgetId] = {
-      left: Math.round(parseFloat(widget.style.left || widget.offsetLeft)),
-      top: Math.round(parseFloat(widget.style.top || widget.offsetTop)),
-    };
-  });
-
-  window.localStorage.setItem(widgetPositionKey, JSON.stringify(positions));
-}
-
 function getWidgetPosition(widget) {
   return {
     left: parseFloat(widget.style.left || widget.offsetLeft),
@@ -118,20 +105,18 @@ function settleWidget(widget, left, top, duration = 360) {
   }, duration);
 }
 
-function restoreWidgetPositions() {
+function restoreOrbitLayout() {
   if (!desktopQuery.matches) {
     return;
   }
 
-  const positions = getStoredWidgetPositions();
   draggableWidgets.forEach((widget) => {
-    const saved = positions[widget.dataset.widgetId];
-    if (!saved) {
+    const slot = orbitSlots[widget.dataset.widgetId];
+    if (!slot) {
       return;
     }
 
-    const next = clampToCluster(saved.left, saved.top, widget);
-    placeWidget(widget, next.left, next.top);
+    placeWidget(widget, slot.left, slot.top);
   });
 }
 
@@ -189,50 +174,57 @@ function getWidgetBox(widget) {
   };
 }
 
-function pushCollidingWidgets(activeWidget) {
-  const activeBox = getWidgetBox(activeWidget);
-  const padding = 18;
+function getBoxAt(widget, left, top) {
+  return {
+    left,
+    top,
+    right: left + widget.offsetWidth,
+    bottom: top + widget.offsetHeight,
+  };
+}
 
-  draggableWidgets.forEach((widget) => {
-    if (widget === activeWidget || widget.dataset.widgetId === "greeting") {
-      return;
+function boxesOverlap(firstBox, secondBox, gap = 18) {
+  return !(
+    firstBox.right + gap <= secondBox.left ||
+    firstBox.left >= secondBox.right + gap ||
+    firstBox.bottom + gap <= secondBox.top ||
+    firstBox.top >= secondBox.bottom + gap
+  );
+}
+
+function canPlaceWidget(widget, left, top) {
+  const candidateBox = getBoxAt(widget, left, top);
+
+  return [...draggableWidgets].every((otherWidget) => {
+    if (otherWidget === widget) {
+      return true;
     }
 
-    const box = getWidgetBox(widget);
-    const overlapX = Math.min(activeBox.right, box.right) - Math.max(activeBox.left, box.left);
-    const overlapY = Math.min(activeBox.bottom, box.bottom) - Math.max(activeBox.top, box.top);
-
-    if (overlapX <= -padding || overlapY <= -padding) {
-      return;
-    }
-
-    const directionX = box.centerX === activeBox.centerX ? 1 : Math.sign(box.centerX - activeBox.centerX);
-    const directionY = box.centerY === activeBox.centerY ? 1 : Math.sign(box.centerY - activeBox.centerY);
-    const pushX = Math.max(0, overlapX + padding) * directionX * 0.42;
-    const pushY = Math.max(0, overlapY + padding) * directionY * 0.42;
-    const current = getWidgetPosition(widget);
-    const next = clampToCluster(current.left + pushX, current.top + pushY, widget);
-
-    settleWidget(widget, next.left, next.top, 180);
+    return !boxesOverlap(candidateBox, getWidgetBox(otherWidget));
   });
 }
 
-function settleCluster(activeWidget) {
-  draggableWidgets.forEach((widget) => {
-    const current = getWidgetPosition(widget);
-    const next = clampToCluster(current.left, current.top, widget);
+function settleToOrbit(widget, duration = 360) {
+  const slot = orbitSlots[widget.dataset.widgetId];
+  if (!slot) {
+    return;
+  }
 
+  settleWidget(widget, slot.left, slot.top, duration);
+}
+
+function settleOrbitLayout(activeWidget) {
+  draggableWidgets.forEach((widget) => {
     if (widget === activeWidget) {
-      settleWidget(widget, next.left, next.top);
       return;
     }
 
-    settleWidget(widget, next.left, next.top, 300);
+    settleToOrbit(widget, 260);
   });
 }
 
 function shouldStartDrag(event, widget) {
-  if (!desktopQuery.matches || event.button !== 0) {
+  if (!desktopQuery.matches || event.button !== 0 || widget.dataset.widgetId === "greeting") {
     return false;
   }
 
@@ -262,11 +254,14 @@ function setupDraggableWidgets() {
         left: parseFloat(widget.style.left || widget.offsetLeft),
         top: parseFloat(widget.style.top || widget.offsetTop),
         moved: false,
+        lastSafeLeft: parseFloat(widget.style.left || widget.offsetLeft),
+        lastSafeTop: parseFloat(widget.style.top || widget.offsetTop),
       };
 
       widget.classList.remove("is-settling");
       widget.classList.add("is-dragging");
       clusterWrap.classList.add("is-rearranging");
+      settleOrbitLayout(widget);
       widget.setPointerCapture(event.pointerId);
       activeDrag.scale = scale;
     });
@@ -293,8 +288,16 @@ function setupDraggableWidgets() {
       activeDrag.widget.dataset.suppressClick = "true";
     }
 
-    placeWidget(activeDrag.widget, activeDrag.left + deltaX, activeDrag.top + deltaY);
-    pushCollidingWidgets(activeDrag.widget);
+    const next = clampToCluster(activeDrag.left + deltaX, activeDrag.top + deltaY, activeDrag.widget);
+
+    if (canPlaceWidget(activeDrag.widget, next.left, next.top)) {
+      activeDrag.lastSafeLeft = next.left;
+      activeDrag.lastSafeTop = next.top;
+      placeWidget(activeDrag.widget, next.left, next.top);
+      return;
+    }
+
+    placeWidget(activeDrag.widget, activeDrag.lastSafeLeft, activeDrag.lastSafeTop);
   });
 
   function finishDrag(event) {
@@ -303,13 +306,10 @@ function setupDraggableWidgets() {
     }
 
     const { widget } = activeDrag;
-    const current = getWidgetPosition(widget);
-    const settled = clampToCluster(current.left, current.top, widget);
     widget.classList.remove("is-dragging");
-    settleWidget(widget, settled.left, settled.top);
-    settleCluster(widget);
+    settleToOrbit(widget);
+    settleOrbitLayout(widget);
     clusterWrap.classList.remove("is-rearranging");
-    saveWidgetPositions();
     activeDrag = null;
   }
 
@@ -378,7 +378,7 @@ personalNote.addEventListener("keydown", (event) => {
 
 resolveComplianceLinks();
 restorePersonalNote();
-restoreWidgetPositions();
+restoreOrbitLayout();
 setupDraggableWidgets();
 startOrbitalMotion();
 updateDateTime();
