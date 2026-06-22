@@ -40,7 +40,13 @@ yuxuan-cheng-portfolio/
 - AI Actor Compliance Workspace:
 
 ```text
-../ai-generated-actor-compliance/web/index.html
+https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/
+```
+
+When previewing locally from `file://`, `127.0.0.1`, or `localhost`, the page rewrites compliance links to:
+
+```text
+http://127.0.0.1:8010/ai-generated-actor-compliance/web/index.html
 ```
 
 - Resume:

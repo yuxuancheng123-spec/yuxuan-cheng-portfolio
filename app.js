@@ -8,6 +8,8 @@ const personalNote = document.querySelector("#personal-note");
 const noteSave = document.querySelector(".note-save");
 const complianceLinks = document.querySelectorAll("[data-compliance-link]");
 
+const onlineComplianceUrl = "https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/";
+const localComplianceUrl = "http://127.0.0.1:8010/ai-generated-actor-compliance/web/index.html";
 const defaultNote = personalNote.textContent.trim();
 const noteStorageKey = "kenny-portfolio-personal-note";
 
@@ -33,10 +35,13 @@ function updateDateTime() {
 }
 
 function resolveComplianceLinks() {
-  if (window.location.protocol !== "file:") return;
+  const isLocalPreview =
+    window.location.protocol === "file:" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "localhost";
 
   complianceLinks.forEach((link) => {
-    link.href = "http://127.0.0.1:8010/ai-generated-actor-compliance/web/index.html";
+    link.href = isLocalPreview ? localComplianceUrl : onlineComplianceUrl;
   });
 }
 
