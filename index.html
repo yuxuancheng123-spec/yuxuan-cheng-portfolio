@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yuxuan Cheng Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio gallery for AI governance, privacy, and product compliance projects by Yuxuan Cheng."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Yuxuan Cheng home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Yuxuan Cheng</span>
+      </a>
+      <nav class="nav-links" aria-label="Portfolio links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">AI Governance / Privacy / Product Compliance</p>
+          <h1 id="hero-title">AI governance, made usable.</h1>
+        </div>
+        <p class="hero-copy">
+          I design compliance workflows, risk assessments, and portfolio-ready governance tools for AI systems that touch people, identity, media, and work.
+        </p>
+      </section>
+
+      <section class="gallery-shell" id="work" aria-labelledby="work-title">
+        <div class="section-heading">
+          <h2 id="work-title">Selected projects</h2>
+          <p>Hover a card for context. Click to open a focused project view.</p>
+        </div>
+
+        <div class="project-grid" aria-label="Project gallery">
+          <button class="project-card featured" type="button" data-project="ai-actor">
+            <span class="project-index">01</span>
+            <span class="project-type">Interactive compliance tool</span>
+            <span class="project-title">AI Actor Compliance Workspace</span>
+            <span class="project-summary">Consent, labeling, provenance, and incident response controls for synthetic media platforms.</span>
+            <span class="project-tags">
+              <span>AI Governance</span>
+              <span>Deepfake Risk</span>
+              <span>Policy Ops</span>
+            </span>
+            <span class="project-preview compliance-preview" aria-hidden="true">
+              <span class="preview-sidebar"></span>
+              <span class="preview-main">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span class="preview-panel"></span>
+            </span>
+          </button>
+
+          <button class="project-card" type="button" data-project="privacy">
+            <span class="project-index">02</span>
+            <span class="project-type">Privacy engineering case</span>
+            <span class="project-title">Data Flow Review System</span>
+            <span class="project-summary">A planned case study for mapping personal data flows, consent boundaries, and retention controls.</span>
+            <span class="project-tags">
+              <span>Privacy</span>
+              <span>DPIA</span>
+            </span>
+            <span class="project-preview privacy-preview" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+
+          <button class="project-card" type="button" data-project="hr-audit">
+            <span class="project-index">03</span>
+            <span class="project-type">Responsible AI audit</span>
+            <span class="project-title">Hiring AI Risk Audit</span>
+            <span class="project-summary">Audit structure for bias, explainability, and accountability gaps in HR AI workflows.</span>
+            <span class="project-tags">
+              <span>HR AI</span>
+              <span>Risk Register</span>
+            </span>
+            <span class="project-preview audit-preview" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+
+          <button class="project-card profile-card" type="button" data-project="about">
+            <span class="project-index">04</span>
+            <span class="project-type">Profile</span>
+            <span class="project-title">About Yuxuan</span>
+            <span class="project-summary">Research interests, compliance focus, and the kind of AI product problems I like solving.</span>
+            <span class="project-tags">
+              <span>About</span>
+              <span>Resume</span>
+            </span>
+            <span class="project-preview profile-preview" aria-hidden="true">
+              <span class="portrait-mark"></span>
+              <span class="profile-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="detail-dock" aria-live="polite" aria-label="Selected project detail">
+        <div class="detail-panel" id="project-detail">
+          <div>
+            <p class="eyebrow" id="detail-kicker">Featured project</p>
+            <h2 id="detail-title">AI Actor Compliance Workspace</h2>
+          </div>
+          <p id="detail-copy">
+            A product-style compliance review workspace for synthetic media platforms. It turns a structured intake into a risk decision, controls, jurisdiction requirements, and evidence checklist.
+          </p>
+          <dl class="detail-meta" id="detail-meta"></dl>
+          <div class="detail-actions">
+            <a class="primary-link" id="detail-primary" href="../ai-generated-actor-compliance/web/index.html">Open project</a>
+            <a id="detail-secondary" href="https://github.com/yuxuancheng123-spec/ai-generated-actor-compliance">View repo</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <h2 id="about-title">I turn AI risk into reviewable systems.</h2>
+        <div class="about-grid">
+          <p>
+            My work sits between policy, product, and implementation: translating governance frameworks into checklists, workflows, reports, and small demos that reviewers can actually use.
+          </p>
+          <ul>
+            <li>AI governance and compliance assessment</li>
+            <li>Privacy engineering and data flow mapping</li>
+            <li>Synthetic media, consent, labeling, and platform accountability</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <p>Built as a portfolio hub for AI governance and privacy projects.</p>
+      <div>
+        <a href="https://github.com/yuxuancheng123-spec">GitHub</a>
+        <a href="mailto:your.email@example.com">Email</a>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
