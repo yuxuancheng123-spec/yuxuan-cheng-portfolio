@@ -1,25 +1,49 @@
 # Kenny Cheng Portfolio
 
-Standalone portfolio homepage for AI governance, face identity research, synthetic media compliance, and digital asset work.
+Personal portfolio homepage for Kenny Cheng, focused on I/O psychology, AI ethics, face identity research, synthetic media governance, and digital asset work.
 
-The page uses a centered floating-widget layout inspired by personal desktop dashboards. It links to the AI Actor Compliance Workspace, GitHub project, and an updated English resume PDF.
+The site uses a centered floating-widget interface inspired by personal desktop dashboards. Widgets orbit around a fixed introduction card, support controlled drag interactions, and link out to the AI Actor Compliance Workspace, GitHub projects, and an updated English resume PDF.
 
-## Preview
+## Quick Links
 
-Open `index.html` directly in a browser, or run a local server from the parent folder so the featured project link can resolve:
+| Link | URL |
+|---|---|
+| Portfolio homepage | <https://yuxuancheng123-spec.github.io/yuxuan-cheng-portfolio/> |
+| Portfolio repository | <https://github.com/yuxuancheng123-spec/yuxuan-cheng-portfolio> |
+| GitHub profile | <https://github.com/yuxuancheng123-spec> |
+| AI Actor Compliance Workspace | <https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/> |
+| Chinese compliance demo | <https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/demo.zh.html> |
+| Compliance repository | <https://github.com/yuxuancheng123-spec/ai-generated-actor-compliance> |
+| Resume PDF | <https://yuxuancheng123-spec.github.io/yuxuan-cheng-portfolio/assets/Kenny_Cheng_Resume.pdf> |
+
+If a GitHub Pages link does not open, check that the target repository is public and GitHub Pages is enabled.
+
+## Project Links
+
+| Project | Description | Link |
+|---|---|---|
+| AI Actor Compliance Workspace | Synthetic media compliance intake and generated report workflow | <https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/> |
+| AI Actor Compliance Repository | Full compliance case study, frameworks, reports, and risk scoring demo | <https://github.com/yuxuancheng123-spec/ai-generated-actor-compliance> |
+| Kenny Cheng Portfolio Repository | Source code for this portfolio homepage | <https://github.com/yuxuancheng123-spec/yuxuan-cheng-portfolio> |
+
+## Local Preview
+
+Run a local server from the parent folder so portfolio links can resolve to the compliance project:
 
 ```bash
-cd ..
+cd "/Users/miine/Documents/Compliance Assessment"
 python3 -m http.server 8010
 ```
 
 Then open:
 
-```text
-http://127.0.0.1:8010/yuxuan-cheng-portfolio/
-```
+| Local page | URL |
+|---|---|
+| Portfolio homepage | <http://127.0.0.1:8010/yuxuan-cheng-portfolio/> |
+| English compliance demo | <http://127.0.0.1:8010/ai-generated-actor-compliance/web/> |
+| Chinese compliance demo | <http://127.0.0.1:8010/ai-generated-actor-compliance/web/demo.zh.html> |
 
-## Current Structure
+## Structure
 
 ```text
 yuxuan-cheng-portfolio/
@@ -35,22 +59,16 @@ yuxuan-cheng-portfolio/
     └── portfolio-gallery-plan.md
 ```
 
-## Featured Links
+## Link Behavior
 
-- AI Actor Compliance Workspace:
-
-```text
-https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/
-```
-
-When previewing locally from `file://`, `127.0.0.1`, or `localhost`, the page rewrites compliance links to:
+When previewing from `file://`, `127.0.0.1`, or `localhost`, compliance links are rewritten to the local compliance demo:
 
 ```text
 http://127.0.0.1:8010/ai-generated-actor-compliance/web/index.html
 ```
 
-- Resume:
+When deployed on GitHub Pages, those same links point to:
 
 ```text
-./assets/Kenny_Cheng_Resume.pdf
+https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/
 ```
