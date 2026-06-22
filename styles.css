@@ -112,7 +112,7 @@ button {
   gap: 44px;
   width: min(calc(100% - 32px), var(--max));
   margin: 0 auto;
-  padding: 96px 0 52px;
+  padding: 92px 0 44px;
   align-items: end;
 }
 
@@ -135,7 +135,7 @@ p {
 h1 {
   max-width: 850px;
   margin-bottom: 0;
-  font-size: clamp(48px, 7vw, 92px);
+  font-size: clamp(66px, 11vw, 148px);
   line-height: 0.94;
   letter-spacing: -0.03em;
 }
@@ -143,7 +143,8 @@ h1 {
 .hero-copy {
   margin: 0;
   color: var(--muted);
-  font-size: 19px;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 760;
   line-height: 1.45;
 }
 
@@ -181,7 +182,7 @@ h1 {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: minmax(340px, auto);
+  grid-auto-rows: minmax(380px, auto);
   gap: 14px;
 }
 
@@ -191,7 +192,7 @@ h1 {
   align-content: end;
   gap: 12px;
   min-width: 0;
-  min-height: 340px;
+  min-height: 380px;
   padding: 18px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -205,7 +206,7 @@ h1 {
 
 .project-card.featured {
   grid-column: span 2;
-  min-height: 430px;
+  min-height: 460px;
   background:
     radial-gradient(circle at 88% 10%, rgba(0, 111, 237, 0.14), transparent 190px),
     var(--surface);
@@ -240,7 +241,7 @@ h1 {
 .project-title {
   position: relative;
   z-index: 2;
-  max-width: 13ch;
+  max-width: 12ch;
   font-size: clamp(26px, 3vw, 44px);
   line-height: 0.98;
   font-weight: 820;
@@ -254,6 +255,9 @@ h1 {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.45;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .project-tags {
@@ -262,6 +266,9 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .project-tags span {
@@ -274,12 +281,45 @@ h1 {
   font-weight: 680;
 }
 
+.project-cta {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 780;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.project-card:hover .project-summary,
+.project-card:focus-visible .project-summary,
+.project-card.active .project-summary,
+.project-card:hover .project-tags,
+.project-card:focus-visible .project-tags,
+.project-card.active .project-tags,
+.project-card:hover .project-cta,
+.project-card:focus-visible .project-cta,
+.project-card.active .project-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .project-preview {
   position: absolute;
   inset: 18px 18px auto auto;
   display: block;
-  width: min(58%, 360px);
-  height: 45%;
+  width: min(72%, 430px);
+  height: 54%;
   border-radius: 16px;
   transform: translate3d(10px, -8px, 0) rotate(1deg);
   transition: transform 320ms ease, opacity 320ms ease;
@@ -377,6 +417,14 @@ h1 {
   z-index: 10;
   margin-top: 18px;
   pointer-events: none;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.detail-dock.is-open {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .detail-panel {
@@ -460,7 +508,7 @@ dd {
 }
 
 .about-section {
-  padding: 96px 0 44px;
+  padding: 74px 0 44px;
 }
 
 .about-grid {
@@ -473,7 +521,8 @@ dd {
 .about-grid p {
   margin: 0;
   color: var(--muted);
-  font-size: 21px;
+  font-size: clamp(24px, 4vw, 44px);
+  font-weight: 760;
   line-height: 1.45;
 }
 

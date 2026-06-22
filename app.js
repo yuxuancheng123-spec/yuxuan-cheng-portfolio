@@ -72,6 +72,7 @@ const detailCopy = document.querySelector("#detail-copy");
 const detailMeta = document.querySelector("#detail-meta");
 const detailPrimary = document.querySelector("#detail-primary");
 const detailSecondary = document.querySelector("#detail-secondary");
+const detailDock = document.querySelector(".detail-dock");
 
 function renderMeta(items) {
   detailMeta.replaceChildren();
@@ -94,6 +95,7 @@ function selectProject(projectId) {
     card.classList.toggle("active", card.dataset.project === projectId);
   });
 
+  detailDock.classList.add("is-open");
   detailKicker.textContent = project.kicker;
   detailTitle.textContent = project.title;
   detailCopy.textContent = project.copy;
@@ -107,5 +109,3 @@ function selectProject(projectId) {
 cards.forEach((card) => {
   card.addEventListener("click", () => selectProject(card.dataset.project));
 });
-
-selectProject("ai-actor");
