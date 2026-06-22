@@ -213,10 +213,10 @@ button {
 }
 
 .visual-card {
-  left: 330px;
+  left: 292px;
   top: 0;
-  width: 330px;
-  height: 136px;
+  width: 410px;
+  height: 164px;
   display: grid;
   place-items: center;
   padding: 13px;
@@ -228,6 +228,23 @@ button {
   object-fit: cover;
   border-radius: 22px;
   opacity: 0.92;
+}
+
+.visual-copy {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 20px;
+  padding: 9px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.76);
+  color: #53606a;
+  font-size: 12px;
+  font-weight: 760;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(70, 86, 96, 0.1);
+  backdrop-filter: blur(14px);
 }
 
 .research-pill {
