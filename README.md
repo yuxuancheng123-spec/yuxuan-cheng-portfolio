@@ -1,6 +1,8 @@
-# Yuxuan Cheng Portfolio
+# Kenny Cheng Portfolio
 
-Standalone portfolio gallery for AI governance, privacy engineering, and product compliance projects.
+Standalone portfolio homepage for AI governance, face identity research, synthetic media compliance, and digital asset work.
+
+The page uses a centered floating-widget layout inspired by personal desktop dashboards. It links to the AI Actor Compliance Workspace, GitHub project, and an updated English resume PDF.
 
 ## Preview
 
@@ -25,16 +27,24 @@ yuxuan-cheng-portfolio/
 ├── styles.css
 ├── app.js
 ├── assets/
+│   ├── Kenny_Cheng_Resume.pdf
+│   └── ai-identity-visual.png
+├── scripts/
+│   └── generate_resume.py
 └── docs/
     └── portfolio-gallery-plan.md
 ```
 
-## Featured Project
+## Featured Links
 
-The first project card links to the existing AI Actor Compliance Workspace:
+- AI Actor Compliance Workspace:
 
 ```text
 ../ai-generated-actor-compliance/web/index.html
 ```
 
-Update this path after deploying both projects online.
+- Resume:
+
+```text
+./assets/Kenny_Cheng_Resume.pdf
+```

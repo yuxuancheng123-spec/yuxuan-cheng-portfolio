@@ -3,158 +3,134 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Yuxuan Cheng Portfolio</title>
+    <title>Kenny Cheng Portfolio</title>
     <meta
       name="description"
-      content="Portfolio gallery for AI governance, privacy, and product compliance projects by Yuxuan Cheng."
+      content="Portfolio hub for Kenny Cheng, focused on AI governance, face identity research, synthetic media, and digital assets."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="site-header" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Yuxuan Cheng home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>Yuxuan Cheng</span>
-      </a>
-      <nav class="nav-links" aria-label="Portfolio links">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    <main class="desktop" id="top">
+      <section class="cluster-stage" aria-label="Kenny Cheng portfolio homepage">
+        <div class="ambient ambient-one" aria-hidden="true"></div>
+        <div class="ambient ambient-two" aria-hidden="true"></div>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div>
-          <p class="eyebrow">AI Governance / Privacy / Compliance</p>
-          <h1 id="hero-title">Yuxuan Cheng</h1>
-        </div>
-        <p class="hero-copy">Product-minded AI governance work.</p>
-      </section>
+        <div class="cluster-wrap">
+          <aside class="float-card sidebar-card" aria-label="Portfolio navigation">
+            <a class="profile-lockup" href="#top" aria-label="Kenny Cheng home">
+              <span class="mini-face" aria-hidden="true"></span>
+              <span>Kenny Cheng</span>
+            </a>
+            <p class="widget-label">General</p>
+            <nav class="side-menu" aria-label="Main sections">
+              <button class="menu-item is-active" type="button" data-panel="recent">
+                <span class="menu-dot" aria-hidden="true"></span>
+                Recent work
+              </button>
+              <button class="menu-item" type="button" data-panel="projects">
+                <span class="menu-dot" aria-hidden="true"></span>
+                Projects
+              </button>
+              <button class="menu-item" type="button" data-panel="resume">
+                <span class="menu-dot" aria-hidden="true"></span>
+                Resume
+              </button>
+              <button class="menu-item" type="button" data-panel="about">
+                <span class="menu-dot" aria-hidden="true"></span>
+                About
+              </button>
+              <button class="menu-item" type="button" data-panel="contact">
+                <span class="menu-dot" aria-hidden="true"></span>
+                Contact
+              </button>
+            </nav>
+          </aside>
 
-      <section class="gallery-shell" id="work" aria-labelledby="work-title">
-        <div class="section-heading">
-          <h2 id="work-title">Selected projects</h2>
-          <p>Hover to preview. Click to open.</p>
-        </div>
+          <section class="float-card visual-card" aria-label="AI identity visual">
+            <img src="./assets/ai-identity-visual.png" alt="Abstract AI identity and digital asset research visual" />
+          </section>
 
-        <div class="project-grid" aria-label="Project gallery">
-          <button class="project-card featured" type="button" data-project="ai-actor">
-            <span class="project-index">01</span>
-            <span class="project-type">Interactive compliance tool</span>
-            <span class="project-title">AI Actor Compliance Workspace</span>
-            <span class="project-summary">Consent, labeling, provenance, and incident response controls for synthetic media platforms.</span>
-            <span class="project-tags">
-              <span>AI Governance</span>
-              <span>Deepfake Risk</span>
-              <span>Policy Ops</span>
-            </span>
-            <span class="project-cta">Open</span>
-            <span class="project-preview compliance-preview" aria-hidden="true">
-              <span class="preview-sidebar"></span>
-              <span class="preview-main">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-              <span class="preview-panel"></span>
-            </span>
-          </button>
+          <a class="float-card research-pill" href="./assets/Kenny_Cheng_Resume.pdf" target="_blank" rel="noreferrer">
+            Resume
+          </a>
 
-          <button class="project-card" type="button" data-project="privacy">
-            <span class="project-index">02</span>
-            <span class="project-type">Privacy engineering case</span>
-            <span class="project-title">Data Flow Review System</span>
-            <span class="project-summary">A planned case study for mapping personal data flows, consent boundaries, and retention controls.</span>
-            <span class="project-tags">
-              <span>Privacy</span>
-              <span>DPIA</span>
-            </span>
-            <span class="project-cta">Open</span>
-            <span class="project-preview privacy-preview" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
+          <section class="float-card clock-card" aria-label="Current time">
+            <span id="clock">13:58</span>
+          </section>
 
-          <button class="project-card" type="button" data-project="hr-audit">
-            <span class="project-index">03</span>
-            <span class="project-type">Responsible AI audit</span>
-            <span class="project-title">Hiring AI Risk Audit</span>
-            <span class="project-summary">Audit structure for bias, explainability, and accountability gaps in HR AI workflows.</span>
-            <span class="project-tags">
-              <span>HR AI</span>
-              <span>Risk Register</span>
-            </span>
-            <span class="project-cta">Open</span>
-            <span class="project-preview audit-preview" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
+          <section class="float-card greeting-card" aria-label="Introduction">
+            <span class="avatar-mark" aria-hidden="true"></span>
+            <h1>Good Afternoon</h1>
+            <p>I'm <strong>Kenny</strong>, researching face identity and digital assets.</p>
+          </section>
 
-          <button class="project-card profile-card" type="button" data-project="about">
-            <span class="project-index">04</span>
-            <span class="project-type">Profile</span>
-            <span class="project-title">About Yuxuan</span>
-            <span class="project-summary">Research interests, compliance focus, and the kind of AI product problems I like solving.</span>
-            <span class="project-tags">
-              <span>About</span>
-              <span>Resume</span>
-            </span>
-            <span class="project-cta">Open</span>
-            <span class="project-preview profile-preview" aria-hidden="true">
-              <span class="portrait-mark"></span>
-              <span class="profile-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </span>
-          </button>
-        </div>
-      </section>
+          <section class="float-card calendar-card" aria-label="Current week">
+            <p class="card-title" id="date-label">2026 / 6 / 22</p>
+            <div class="calendar-grid" aria-hidden="true">
+              <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+              <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+              <span class="today">22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+            </div>
+          </section>
 
-      <section class="detail-dock" aria-live="polite" aria-label="Selected project detail">
-        <div class="detail-panel" id="project-detail">
-          <div>
-            <p class="eyebrow" id="detail-kicker">Select a project</p>
-            <h2 id="detail-title">Project preview</h2>
-          </div>
-          <p id="detail-copy">
-            Click a thumbnail to open its focused project view.
-          </p>
-          <dl class="detail-meta" id="detail-meta"></dl>
-          <div class="detail-actions">
-            <a class="primary-link" id="detail-primary" href="../ai-generated-actor-compliance/web/index.html">Open project</a>
-            <a id="detail-secondary" href="https://github.com/yuxuancheng123-spec/ai-generated-actor-compliance">View repo</a>
-          </div>
-        </div>
-      </section>
+          <section class="float-card panel-card" aria-live="polite">
+            <div class="panel-content is-active" data-panel-view="recent">
+              <p class="card-title">Latest</p>
+              <p>FaceMarket researcher</p>
+              <small>Face identity, likeness, and digital asset research.</small>
+            </div>
+            <div class="panel-content" data-panel-view="projects">
+              <p class="card-title">Projects</p>
+              <p>AI Actor Compliance Workspace</p>
+              <small>Consent, labeling, provenance, and platform controls.</small>
+            </div>
+            <div class="panel-content" data-panel-view="resume">
+              <p class="card-title">Resume</p>
+              <p>Kenny Cheng Resume</p>
+              <small>Updated with FaceMarket Researcher experience.</small>
+            </div>
+            <div class="panel-content" data-panel-view="about">
+              <p class="card-title">About</p>
+              <p>AI governance, privacy engineering, and synthetic media risk.</p>
+              <small>Building practical compliance artifacts and product review tools.</small>
+            </div>
+            <div class="panel-content" data-panel-view="contact">
+              <p class="card-title">Contact</p>
+              <p>u3663763@connect.hku.hk</p>
+              <small>Open to AI governance, privacy, and compliance research opportunities.</small>
+            </div>
+          </section>
 
-      <section class="about-section" id="about" aria-labelledby="about-title">
-        <h2 id="about-title">Focus areas</h2>
-        <div class="about-grid">
-          <p>AI governance, privacy engineering, synthetic media risk.</p>
-          <ul>
-            <li>Risk controls</li>
-            <li>Compliance artifacts</li>
-            <li>Product review workflows</li>
-          </ul>
+          <section class="float-card portfolio-card">
+            <p class="card-title">Portfolio</p>
+            <button class="stack-toggle" type="button" aria-expanded="false">
+              Scatter projects
+            </button>
+            <div class="project-stack" aria-label="Portfolio project shortcuts">
+              <a class="project-chip chip-one" href="../ai-generated-actor-compliance/web/index.html">
+                AI Actor Compliance
+              </a>
+              <a class="project-chip chip-two" href="https://github.com/yuxuancheng123-spec/ai-generated-actor-compliance">
+                GitHub Repo
+              </a>
+              <a class="project-chip chip-three" href="./assets/Kenny_Cheng_Resume.pdf" target="_blank" rel="noreferrer">
+                Resume PDF
+              </a>
+            </div>
+          </section>
+
+          <a class="float-card music-card" href="../ai-generated-actor-compliance/web/index.html">
+            <span>AI governance</span>
+            <span class="play-dot" aria-hidden="true"></span>
+          </a>
+
+          <a class="float-card heart-card" href="mailto:u3663763@connect.hku.hk" aria-label="Email Kenny Cheng">
+            ♡
+          </a>
         </div>
       </section>
     </main>
-
-    <footer class="site-footer" id="contact">
-      <p>Built as a portfolio hub for AI governance and privacy projects.</p>
-      <div>
-        <a href="https://github.com/yuxuancheng123-spec">GitHub</a>
-        <a href="mailto:your.email@example.com">Email</a>
-      </div>
-    </footer>
 
     <script src="./app.js"></script>
   </body>
