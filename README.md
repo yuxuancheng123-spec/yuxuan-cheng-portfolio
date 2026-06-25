@@ -1,8 +1,8 @@
-# Kenny Cheng Portfolio
+# Yuxuan Cheng Portfolio
 
-Personal portfolio homepage for Kenny Cheng, focused on I/O psychology, AI ethics, face identity research, synthetic media governance, and digital asset work.
+Personal portfolio homepage for Yuxuan Cheng, focused on AI governance, privacy engineering, synthetic media compliance, face identity research, and digital asset work.
 
-The site uses a centered floating-widget interface inspired by personal desktop dashboards. Widgets orbit around a fixed introduction card, support controlled drag interactions, and link out to the AI Actor Compliance Workspace, GitHub projects, and an updated English resume PDF.
+The site uses a dark evidence-lab interface: a cinematic AI governance command center with compliance-flow visuals, glass panels, audit-style project cards, and direct links to the AI Actor Compliance Workspace, GitHub projects, privacy engineering artifacts, and an updated English resume PDF.
 
 ## Quick Links
 
@@ -24,7 +24,7 @@ If a GitHub Pages link does not open, check that the target repository is public
 |---|---|---|
 | AI Actor Compliance Workspace | Synthetic media compliance intake and generated report workflow | <https://yuxuancheng123-spec.github.io/ai-generated-actor-compliance/web/> |
 | AI Actor Compliance Repository | Full compliance case study, frameworks, reports, and risk scoring demo | <https://github.com/yuxuancheng123-spec/ai-generated-actor-compliance> |
-| Kenny Cheng Portfolio Repository | Source code for this portfolio homepage | <https://github.com/yuxuancheng123-spec/yuxuan-cheng-portfolio> |
+| Yuxuan Cheng Portfolio Repository | Source code for this portfolio homepage | <https://github.com/yuxuancheng123-spec/yuxuan-cheng-portfolio> |
 
 ## Local Preview
 
